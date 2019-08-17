@@ -21,6 +21,7 @@
     <% if @current_user %>
     <a class="navbar-brand" href="<%= "/users/#{@current_user.id}" %>"/>Your Profile</a>
     <% end %>
+    <a class="navbar-brand" href="<%= '/users' %>"/>All Users</a>
     <a class="navbar-brand" href="<%= '/logout' %>"/>Log Out</a>
   </div>
   <br>

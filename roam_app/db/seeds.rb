@@ -27,7 +27,7 @@ activities = Activity.create(
     city: "Blairsville",
     state: "GA",
     zip_code: 30512,
-    category: "hike",
+    category: "Hike",
     difficulty_rating: 3,
     parking: true,
     creator_id: 1

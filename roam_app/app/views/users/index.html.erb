@@ -1,0 +1,11 @@
+<h3>All Users</h3>
+
+<% @users.each do |user| %>
+
+  <ul><%= link_to user.name, user_path(user)%>
+    <li> Bio: <%= user.bio %></li>
+    <li> Age: <%= user.age %></li>
+    <li> Number of Trips: <%= user.trips.length %>  </li>
+  </ul>
+
+<%end%>
