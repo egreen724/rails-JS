@@ -6,11 +6,11 @@ const bindClickHandlers = () => {
   $('#all_users').on('click', e => {
     e.preventDefault();
     $.get('/users.json', function(data) {
-      console.log(data)
       $('#app_container').html('')
       data.forEach(user => {
         let newUser = new User(user)
-        console.log(newUser)
+        let userHtml = newUser.formatIndex()
+        $('#app_container').append(userHtml)
     })}
   )
 })
@@ -24,9 +24,12 @@ function User(user_object) {
   this.trips = user_object.trips
 }
 
-User.prototype.formatIndex = () => {
+User.prototype.formatIndex = function() {
   let userHtml = `
-    <h2>${this.name} </h2>
+    <a href= "/user/${this.id}"><h4>Name: ${this.name} </h4></a>
+    <p>Email: ${this.email}, Bio: ${this.bio}, Age: ${this.age} </p>
+    <h3>Trips Taken: ${this.trips.length} </h3>
+
   `
   return userHtml
 }
