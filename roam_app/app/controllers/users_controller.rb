@@ -35,6 +35,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @current_user = current_user
 
+    respond_to do |f|
+      f.html
+      f.json {render json: @user}
+    end
+
     if @user.trips != []
       if @user.sorted_by_date.last.taken == true
         @recent_trip = @user.sorted_by_date.last

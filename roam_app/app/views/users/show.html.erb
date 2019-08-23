@@ -1,3 +1,5 @@
+
+<div id="profile_container">
 <h1> <%= @user.name %> </h1>
 
 <h4> Bio: <%= @user.bio %> </h4>
@@ -6,7 +8,7 @@
 <% if @current_user == @user %>
   <%= link_to "Log a Trip", "/trips/new", class: "button" %><br>
 <% end %>
-
+</div>
 
 <br>
 <% if @recent_trip %>

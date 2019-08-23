@@ -19,7 +19,7 @@
     <a class="navbar-brand" href="<%= '/signin' %>"/>Login</a>
     <a class="navbar-brand" href="<%= '/activities' %>"/>All Activites</a>
     <% if @current_user %>
-    <a class="navbar-brand" href="<%= "/users/#{@current_user.id}" %>"/>Your Profile</a>
+    <a class="navbar-brand" class= "user_show" href="<%= "/users/#{@current_user.id}" %>"/>Your Profile</a>
     <% end %>
     <a class="navbar-brand" id="all_users" href="<%= '/users' %>"/>All Users</a>
     <a class="navbar-brand" href="<%= '/logout' %>"/>Log Out</a>
