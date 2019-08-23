@@ -37,27 +37,45 @@ function User(user_object) {
 }
 
 User.prototype.formatIndex = function() {
+
+  let takenTrips = this.formatTripsTaken()
+
   let userHtml = `
     <a class="user_show" href= "/users/${this.id}"><h4>Name: ${this.name} </h4></a>
     <p>Email: ${this.email}, Bio: ${this.bio}, Age: ${this.age} </p>
-    <h5>Number of Trips Taken: ${this.trips.length} </h5>
+    <h5>Number of Trips Taken: ${takenTrips.length} </h5>
   `
   return userHtml
 }
 
 User.prototype.formatShow = function() {
-  debugger
+  let takenTrips = this.formatTripsTaken()
+
+  const lastTrip = takenTrips.slice(-1)[0]
+  let lastTripName = lastTrip.activity.name
   let userHtml = `
   <div id="profile_container">
     <h1> ${this.name}</h1>
     <h4> Bio: ${this.bio} </h4>
     <h4> Age: ${this.age} </h4>
     <h4> Number of Trips Taken: ${this.trips.length} </h4>
-
+    <a href="/users/${this.id}/trips/${lastTrip.id}"><h4> Most Recent Trip: ${lastTripName}, ${lastTrip.activity.category} </h4></a>
   </div>
 
   `
   return userHtml
 }
 
-// <a href="/users/${this.id}/trips/${this.trips.last.id}"><h4> Most Recent Trip: ${this.trips.last} </h4></a>
+//Start here tomorrow!
+User.prototype.formatTripsTaken = function() {
+  let takenTrips = []
+
+  let allTrips = this.trips
+
+  allTrips.forEach(trip => {
+    trip.taken === true
+    takenTrips << trip
+  })
+
+  return takenTrips
+}
