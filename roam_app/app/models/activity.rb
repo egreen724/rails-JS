@@ -87,4 +87,13 @@ class Activity < ApplicationRecord
     end
   end
 
+  def parking_format
+    if self.parking == true
+      answer = "Yes"
+    else
+     answer = "No"
+    end
+    return answer
+  end
+
 end
