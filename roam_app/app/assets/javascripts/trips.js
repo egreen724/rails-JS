@@ -1,4 +1,5 @@
 $(() => {
+  console.log("ready")
   tripFormEvents()
 })
 
