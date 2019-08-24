@@ -39,43 +39,86 @@ function User(user_object) {
 User.prototype.formatIndex = function() {
 
   let takenTrips = this.formatTripsTaken()
+  let toDoList = this.formatToDo()
 
   let userHtml = `
     <a class="user_show" href= "/users/${this.id}"><h4>Name: ${this.name} </h4></a>
     <p>Email: ${this.email}, Bio: ${this.bio}, Age: ${this.age} </p>
-    <h5>Number of Trips Taken: ${takenTrips.length} </h5>
+    <h4> Trips Taken: ${takenTrips.length} </h4>
+    <h4> To Do List: ${toDoList.length} </h4>
   `
   return userHtml
 }
 
 User.prototype.formatShow = function() {
   let takenTrips = this.formatTripsTaken()
+  let toDoList = this.formatToDo()
+  let listHtml = this.listHtml()
 
-  const lastTrip = takenTrips.slice(-1)[0]
-  let lastTripName = lastTrip.activity.name
   let userHtml = `
   <div id="profile_container">
     <h1> ${this.name}</h1>
     <h4> Bio: ${this.bio} </h4>
     <h4> Age: ${this.age} </h4>
-    <h4> Number of Trips Taken: ${this.trips.length} </h4>
-    <a href="/users/${this.id}/trips/${lastTrip.id}"><h4> Most Recent Trip: ${lastTripName}, ${lastTrip.activity.category} </h4></a>
+    ${listHtml}
   </div>
 
   `
   return userHtml
 }
 
-//Start here tomorrow!
+
 User.prototype.formatTripsTaken = function() {
   let takenTrips = []
-
   let allTrips = this.trips
 
   allTrips.forEach(trip => {
-    trip.taken === true
-    takenTrips << trip
+    if (trip.taken === true) {
+        takenTrips.push(trip)
+    }
+  })
+  return takenTrips
+}
+
+User.prototype.formatToDo = function() {
+  let toDoList = []
+  let allTrips = this.trips
+
+  allTrips.forEach(trip => {
+    if (trip.taken === false) {
+      toDoList.push(trip)
+    }
+  })
+  return toDoList
+}
+
+User.prototype.listHtml = function() {
+  let takenTrips = this.formatTripsTaken()
+  let toDoList = this.formatToDo()
+
+  let tripHtml = ""
+  let toDoHtml = ""
+
+  takenTrips.forEach(trip => {
+    tripHtml += `<li> ${trip.activity.name}</li>`
   })
 
-  return takenTrips
+  toDoList.forEach(toDo => {
+    toDoHtml += `<li> ${toDo.activity.name}</li>`
+  })
+  let listHtml = `
+  <div class="lists">
+    <div class="to_do">
+      <ul> To Do List:
+        ${toDoHtml}
+      </ul>
+    </div>
+
+    <div class="past_activities">
+      <ul> Past Trips:
+        ${tripHtml}
+      </ul>
+    </div>
+    `
+    return listHtml
 }
