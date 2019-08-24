@@ -51,8 +51,6 @@ User.prototype.formatIndex = function() {
 }
 
 User.prototype.formatShow = function() {
-  let takenTrips = this.formatTripsTaken()
-  let toDoList = this.formatToDo()
   let listHtml = this.listHtml()
 
   let userHtml = `

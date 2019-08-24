@@ -14,7 +14,8 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
 
     if @trip.save
-      redirect_to ("/trips/#{@trip.id}")
+      # redirect_to ("/trips/#{@trip.id}")
+       render json: @trip
     else #use errors hash instead of flash and render page
       flash[:notice] = "Please complete the form with valid entries."
       redirect_to(controller: 'trips', action: 'new')
