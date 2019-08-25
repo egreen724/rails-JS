@@ -100,7 +100,7 @@ User.prototype.listHtml = function() {
   let toDoHtml = ""
 
   takenTrips.forEach(trip => {
-    tripHtml += `<li> ${trip.activity.name}</li>`
+    tripHtml += `<a href="/trips/${trip.id}"><li> ${trip.activity.name}</li></a>`
   })
 
   toDoList.forEach(toDo => {

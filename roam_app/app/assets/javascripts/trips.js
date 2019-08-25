@@ -87,7 +87,7 @@ Trip.prototype.tripTakenDisplay = function() {
   <h3> Address: ${this.activity.city}, ${this.activity.state}</h3>
   <h2> ${this.user.name}'s Trip:</h2>
   <h3> Date: ${this.date} </h3>
-  <h3> Time: ${this.time_ellapsed} hours</h3>
+  <h3> Time: ${this.time_ellapsed} minutes</h3>
   <h3> User Comments: ${this.comment}  </h3>
   </div>
   <a class="button" href="/activities/${this.activity_id}/trips">See similar Trips taken by other Users</a>
