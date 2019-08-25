@@ -32,7 +32,7 @@ const tripFormEvents = () => {
     const values = $(this).serialize()
 
     $.post('/trips', values).done(function(data) {
-      console.log(data)
+
       $('#app_container').html(" ")
       let newTrip = new Trip(data)
       let html = ""
@@ -45,6 +45,7 @@ const tripFormEvents = () => {
       }
 
       $('#app_container').html(html)
+      history.pushState(null, null, `trips/${newTrip.id}`)
     })
   })
 
