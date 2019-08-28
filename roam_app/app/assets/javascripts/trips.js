@@ -45,6 +45,7 @@ const tripFormEvents = () => {
       }
 
       $('#app_container').html(html)
+      debugger; 
       history.pushState(null, null, `trips/${newTrip.id}`)
     })
   })
