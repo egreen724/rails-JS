@@ -5,10 +5,8 @@ $(() => {
 const bindClickHandlers = () => {
   $('#all_users').on('click', e => {
     e.preventDefault()
-    let stateObj = { url: ""}
-    debugger 
-    history.pushState(stateObj, null, "users")
     $.get('/users.json', function(data) {
+      history.pushState(null, null, '/users')
       $('#app_container').html('')
       data.forEach(user => {
         let newUser = new User(user)
@@ -21,9 +19,8 @@ const bindClickHandlers = () => {
   $(document).on('click', '.user_show', function(e) {
     e.preventDefault()
     let id = this.href.slice(-1)
-    let stateObj = {url: "users"}
-    history.pushState(stateObj, null, `users/${id}`)
     $.get(`/users/${id}.json`, function(user) {
+      history.pushState(null, null, `/users/${id}`)
       $('#app_container').html('')
       let newUser = new User(user)
       let userShowHtml = newUser.formatShow()

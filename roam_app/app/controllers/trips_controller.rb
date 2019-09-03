@@ -16,7 +16,7 @@ class TripsController < ApplicationController
     if @trip.save
       # redirect_to ("/trips/#{@trip.id}")
        render json: @trip
-    else #use errors hash instead of flash and render page
+    else 
       flash[:notice] = "Please complete the form with valid entries."
       redirect_to(controller: 'trips', action: 'new')
     end
