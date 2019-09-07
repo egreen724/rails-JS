@@ -17,7 +17,6 @@ const tripFormEvents = () => {
     var str = "";
     $( "#trip_taken option:selected" ).each(function() {
       str = $( this ).text()
-      // $('#trip_display').append(tripData)
       if (str === "Log a Trip") {
         $('#trip_display').append(tripData)
       }

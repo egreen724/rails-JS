@@ -27,6 +27,28 @@ const bindClickHandlers = () => {
       $('#app_container').append(userShowHtml)
     })
   })
+
+  $(document).on('click', '#sort_users', function(e) {
+    $.get('/users.json', function(data) {
+      data.sort(function(a, b) {
+        let nameA = a.name.toUpperCase();
+        let nameB = b.name.toUpperCase(); 
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+      $('#app_container').html('')
+      data.forEach(user => {
+        let newUser = new User(user)
+        let userHtml = newUser.formatIndex()
+        $('#app_container').append(userHtml)
+      })
+    })
+  })
 }
 
 function User(user_object) {
